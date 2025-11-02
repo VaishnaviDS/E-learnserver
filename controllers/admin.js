@@ -6,6 +6,7 @@ import { promisify } from "util";
 import fs from 'fs';
 import { User } from "../models/User.js";
 import { v2 as cloudinary } from "cloudinary";
+import { Testimonial } from "../models/Testimonials.js";
 
 // admin creating course
 export const createCourse = TryCatch(async (req, res) => {
@@ -86,6 +87,7 @@ export const deleteCourse = TryCatch(async (req, res) => {
           const publicIdWithExt = parts[parts.length - 1];
           const publicId = publicIdWithExt.split(".")[0];
           await cloudinary.uploader.destroy(publicId, { resource_type: "auto" });
+          await Testimonial.deleteMany({ course: course._id });
         } catch (err) {
           console.log("Error deleting lecture:", err.message);
         }
