@@ -8,6 +8,8 @@ import { User } from "../models/User.js";
 import { v2 as cloudinary } from "cloudinary";
 import { Testimonial } from "../models/Testimonials.js";
 
+
+
 // admin creating course
 export const createCourse = TryCatch(async (req, res) => {
   const { title, description, category, createdBy, duration, price, image } = req.body;
